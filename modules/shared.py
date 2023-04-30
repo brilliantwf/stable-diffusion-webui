@@ -147,6 +147,7 @@ xformers_available = False
 config_filename = cmd_opts.ui_settings_file
 
 os.makedirs(cmd_opts.hypernetwork_dir, exist_ok=True)
+embeddings = {}
 hypernetworks = {}
 loaded_hypernetwork = None
 loaded_hypernetworks = []
@@ -185,12 +186,49 @@ else:
     else:
         print(response.text)
 
-def reload_hypernetworks():
+def reload_embeddings(request: gr.Request):
+    from modules import sd_hijack
+    global embeddings
+
+    embeddings = {}
+
+    if cmd_opts.pureui:
+        username = get_webui_username(request)
+        params = {
+            'module': 'embeddings',
+            'username': username
+        }
+        response = requests.get(url=f'{api_endpoint}/sd/models', params=params)
+        if response.status_code == 200:
+            for embedding_item in json.loads(response.text):
+                basename, fullname = os.path.split(embedding_item)
+                embeddings[os.path.splitext(embedding_item)[0]] = f'/tmp/models/embeddings/{fullname}'
+    else:
+        sd_hijack.model_hijack.embedding_db.load_textual_inversion_embeddings(force_reload=True)
+        embeddings = sd_hijack.model_hijack.embedding_db.word_embeddings.values()
+
+
+def reload_hypernetworks(request: gr.Request = None):
     from modules.hypernetworks import hypernetwork
     global hypernetworks
 
-    hypernetworks = hypernetwork.list_hypernetworks(cmd_opts.hypernetwork_dir)
-    hypernetwork.load_hypernetwork(opts.sd_hypernetwork)
+    hypernetworks = {}
+
+    if cmd_opts.pureui:
+        if request:
+            username = get_webui_username(request)
+            params = {
+                'module': 'hypernetwork',
+                'username': username
+            }
+            response = requests.get(url=f'{api_endpoint}/sd/models', params=params)
+            if response.status_code == 200:
+                for hypernetwork_item in json.loads(response.text):
+                    basename, fullname = os.path.split(hypernetwork_item)
+                    hypernetworks[os.path.splitext(hypernetwork_item)[0]] = f'/tmp/models/hypernetworks/{fullname}'
+    else:
+        hypernetworks = hypernetwork.list_hypernetworks(cmd_opts.hypernetwork_dir)
+        hypernetwork.load_hypernetwork(opts.sd_hypernetwork)
 
 class State:
     skipped = False
@@ -372,7 +410,6 @@ class OptionInfo:
         self.onchange = onchange
         self.section = section
         self.refresh = refresh
-
 
 def options_section(section_identifier, options_dict):
     for k, v in options_dict.items():

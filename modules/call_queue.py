@@ -73,10 +73,12 @@ def wrap_gradio_gpu_call(func, extra_outputs=None):
 
         httpuri = text['payload'][0]['httpuri']
         response = requests.get(url=httpuri)
-        processed = json.loads(response.text)
-        print(f"Time taken: {time.time() - start}s")
-
-        return processed
+        try:
+            processed = json.loads(response.text)
+            print(f"Time taken: {time.time() - start}s")
+            return processed
+        except Exception:
+            print(response.text)
 
     def sagemaker_inference(task, infer_type, username, sagemaker_endpoint, *args, **kwargs):
         if task == 'text-to-image' or task == 'image-to-image':
