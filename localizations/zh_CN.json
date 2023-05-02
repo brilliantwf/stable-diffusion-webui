@@ -860,5 +860,19 @@
     "Show current user's images only":"只显示当前用户图片集",
     "Don't load other user's models":"不加载其他用户目录模型",
     "Merge":"合并",
+    "Textual Inversion": "文本反转",
+    "Hypernetworks": "超网络",
+    "Search...": "搜索...",
+    "Refresh": "刷新",
+    "Extra Networks": "额外网络",
+    "Add hypernetwork to prompt": "添加超网络到提示词",
+    "Default view for Extra Networks": "额外网络的默认视图",
+    "Multiplier for extra networks": "额外网络的倍数",
+    "Card width for Extra Networks (px)": "额外网络的卡片宽度(px)",
+    "Card height for Extra Networks (px)": "额外网络的卡片高度(px)",
+    "Extra text to add before <...> when adding extra network to prompt": "当添加额外网络到提示词时额外文本添加在<...>之前",
+    "Add Lora to prompt": "添加Lora到提示词",
+    "Nothing here. Add some content to the following directories:": "没有找到。添加内容到下面的目录中",
+
     "--------": "--------"
 }

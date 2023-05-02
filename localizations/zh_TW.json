@@ -831,6 +831,19 @@
     "Amount of time to pause between Epochs (s)": "Epochs 間隔等待時間",
     "Save Preview(s) Frequency (Epochs)": "保存預覽頻率 (Epochs)",
     "A generic prompt used to generate a sample image to verify model fidelity.": "用於生成樣本圖像以驗證模型保真度的通用提示。",
+    "Textual Inversion": "文本反轉",
+    "Hypernetworks": "超網絡",
+    "Search...": "搜索...",
+    "Refresh": "刷新",
+    "Extra Networks": "額外網絡",
+    "Add hypernetwork to prompt": "添加超網絡到提示詞",
+    "Default view for Extra Networks": "額外網絡的默認視圖",
+    "Multiplier for extra networks": "額外網絡的倍數",
+    "Card width for Extra Networks (px)": "額外網絡的卡片寬度(px)",
+    "Card height for Extra Networks (px)": "額外網絡的卡片高度(px)",
+    "Extra text to add before <...> when adding extra network to prompt": "當添加額外網絡到提示詞時額外文本添加在<...>之前",
+    "Add Lora to prompt": "添加Lora到提示詞",
+    "Nothing here. Add some content to the following directories:": "沒有找到。添加內容到下面的目錄中",
 
     "--------": "--------"    
 }
