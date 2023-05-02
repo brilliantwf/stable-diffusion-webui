@@ -179,6 +179,7 @@ class ExtraNetworksPage:
             "metadata_button": metadata_button,
         }
 
+        print(args)
         return self.card_page.format(**args)
 
     def find_preview(self, path):
@@ -284,6 +285,7 @@ def create_ui(container, button, tabname):
 
 
 def path_is_parent(parent_path, child_path):
+    print('-----0000-----', parent_path, child_path)
     parent_path = os.path.abspath(parent_path)
     child_path = os.path.abspath(child_path)
 
