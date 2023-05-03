@@ -440,14 +440,7 @@ def wrap_gradio_gpu_call(func, extra_outputs=None):
 
 def wrap_gradio_call(func, extra_outputs=None, add_stats=False):
     def f(request: gr.Request, *args, extra_outputs_array=extra_outputs, **kwargs):
-        tokens = shared.demo.server_app.tokens
-        cookies = shared.get_cookies(request)
-        access_token = None
-        for cookie in cookies:
-            if cookie.startswith('access-token'):
-                access_token = cookie[len('access-token=') : ]
-                break
-        username = tokens[access_token]
+        username = shared.get_webui_username(request)
 
         run_memmon = shared.opts.memmon_poll_rate > 0 and not shared.mem_mon.disabled and add_stats
         if run_memmon:

@@ -880,6 +880,8 @@ def get_webui_username(request):
         if cookie.startswith('access-token'):
             access_token = cookie[len('access-token=') : ]
             break
+    if access_token.startswith('unsecure='):
+        access_token = access_token[len('unsecure=') : ]
     username = tokens[access_token] if access_token else None
     return username
 

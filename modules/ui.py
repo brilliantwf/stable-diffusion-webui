@@ -2315,6 +2315,8 @@ def create_ui():
                 for cookie in cookies:
                     if cookie.startswith('access-token'):
                         access_token = cookie[len('access-token=') : ]
+                        if access_token.startswith('unsecure='):
+                            access_token = access_token[len('unsecure=') : ]
                         tokens.pop(access_token)
                         break
 
