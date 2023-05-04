@@ -491,7 +491,7 @@ input[type="range"]{
     padding: 0;
 }
 
-#refresh_sagemaker_endpoint, #refresh_sd_model_checkpoint, #refresh_sd_vae, #refresh_sd_hypernetwork, #refresh_train_hypernetwork_name, #refresh_train_embedding_name, #refresh_localization, #refresh_controlnet, #refresh_sd_lora, #switch_values_symbol, #camera_symbol, #reverse_symbol {    
+#refresh_sagemaker_endpoint, #refresh_sd_model_checkpoint, #refresh_sd_vae, #refresh_sd_hypernetwork, #refresh_train_hypernetwork_name, #refresh_train_embedding_name, #refresh_localization, #refresh_controlnet, #refresh_sd_lora, #switch_values_symbol, #camera_symbol, #reverse_symbol, #trigger_symbol, #open_symbol, #tossup_symbol {
     max-width: 2.5em;
     min-width: 2.5em;
     height: 2.4em;
@@ -742,6 +742,18 @@ div.compact{
 }
 
 .gradio-slider input[type="number"]{
+    width: 6em;
+}
+
+#control_weight input[type="number"]{
+    width: 6em;
+}
+
+#starting_control_step input[type="number"]{
+    width: 6em;
+}
+
+#ending_control_step input[type="number"]{
     width: 6em;
 }
 
